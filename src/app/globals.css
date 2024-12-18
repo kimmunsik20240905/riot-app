@@ -17,6 +17,7 @@
 }
 
 body {
+  min-width: 640px;
   color: rgb(var(--background-end-rgb));
   background: rgb(var(--foreground-rgb));
 }

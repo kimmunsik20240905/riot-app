@@ -1,14 +1,15 @@
+"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "Riot App",
-  description: "LOL 챔피언, 아이템, 로테이션 소개",
-};
+const queryClient = new QueryClient();
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -39,7 +40,11 @@ export default function RootLayout({
           </header>
 
           {/* 콘텐츠 영역 */}
-          <main className="flex-1 p-6">{children}</main>
+          <main className="flex-1 p-6">
+            <QueryClientProvider client={queryClient}>
+              {children}
+            </QueryClientProvider>
+          </main>
         </div>
       </body>
     </html>

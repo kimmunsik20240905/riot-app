@@ -8,18 +8,17 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
 ---
 
 ## 기술 스택
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)  
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)  
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwind-css&logoColor=white)
+
 
 ---
 
 ## 페이지 구성 및 기능
 
 ### **공통사항**
-- `src/app/layout.tsx`를 통해 글로벌 레이아웃 및 네비게이션 메뉴 관리
-- 상태 관리는 **React Query**를 사용하여 서버 데이터를 효율적으로 캐싱하고 클라이언트에서 상태 관리
+- `src/app/layout.tsx`를 통해 네비게이션 메뉴 관리
 - 스타일링은 Tailwind CSS로 구현
+- 전체적으로 반응형 UI로 구현
 
 ---
 
@@ -31,7 +30,6 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
   - Riot Games API의 활용 정보를 소개
   - 주요 페이지로 이동할 수 있는 카드형 링크 제공 (챔피언 목록, 금주 로테이션, 아이템 목록)
   - 카드에는 각 페이지와 관련된 이미지를 표시
-- **추가사항**: 반응형 UI로 구현되어 다양한 화면 크기에서 최적의 사용자 경험 제공
 
 #### **2. Champions (챔피언 목록)**
 - **경로**: `/champions`
@@ -39,7 +37,7 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
   - Riot Games API에서 가져온 챔피언 목록 데이터를 표시
   - 각 챔피언의 이름, 제목, 이미지가 포함된 카드형 UI
   - 카드 클릭 시 해당 챔피언의 상세 페이지로 이동
-- **상태 관리**: 서버 컴포넌트(SSR)를 활용하여 데이터를 가져와 렌더링
+- **렌더링 방식**: ISR 렌더링
 
 #### **3. Champion Rotation (금주 로테이션)**
 - **경로**: `/rotation`
@@ -47,7 +45,7 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
   - 금주의 무료 로테이션 챔피언 목록을 표시
   - 각 로테이션 챔피언의 이름, 제목, 이미지가 포함된 카드형 UI
   - 카드 클릭 시 해당 챔피언의 상세 페이지로 이동
-- **상태 관리**: `React Query`를 사용하여 클라이언트에서 데이터를 비동기로 가져오고 캐싱
+- **렌더링 방식**: `Tanstack Query`를 사용한 CSR 렌더링
 
 #### **4. Items (아이템 목록)**
 - **경로**: `/items`
@@ -55,14 +53,14 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
   - Riot Games API에서 가져온 아이템 목록 데이터를 표시
   - 각 아이템의 이름, 간략 설명, 이미지가 포함된 카드형 UI
   - 카드 클릭 시 해당 아이템의 상세 페이지로 이동
-- **상태 관리**: 서버 컴포넌트(SSR)를 활용하여 데이터를 가져와 렌더링
+- **렌더링 방식**: SSG 렌더링
 
 #### **5. Champion Detail (챔피언 상세)**
 - **경로**: `/champions/:id`
 - **기능**:
   - 선택한 챔피언의 상세 정보를 표시
   - 챔피언의 이름, 제목, 설명, 이미지, 스탯(공격력, 방어력 등) 표시
-- **상태 관리**: SSR로 동적 데이터를 렌더링
+- **렌더링 방식**: SSR 렌더링
 
 #### **6. Item Detail (아이템 상세)**
 - **경로**: `/items/:id`
@@ -70,7 +68,7 @@ Riot Games API를 활용하여 리그 오브 레전드의 챔피언, 아이템, 
   - 선택한 아이템의 상세 정보를 표시
   - 아이템의 이름, 설명, 이미지, 세부 효과 표시
   - HTML 형식의 설명 데이터를 렌더링하여 사용자에게 표시
-- **상태 관리**: SSR로 동적 데이터를 렌더링
+- **렌더링 방식**: SSR 렌더링
 
 ---
 

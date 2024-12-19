@@ -1,11 +1,11 @@
 "use client";
-import type { Metadata } from "next";
+
+import { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode } from "react";
 
 const queryClient = new QueryClient();
 

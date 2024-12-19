@@ -1,60 +1,11 @@
-export interface ChampionData {
-  id: string;
-  key: string;
-  name: string;
-  title: string;
-  image: {
-    full: string;
-  };
-}
-
-export interface ChampionListResponse {
-  [key: string]: ChampionData;
-}
-
-export interface ChampionList {
-  id: string;
-  key: string;
-  name: string;
-  title: string;
-  image: string;
-}
-
-export interface ChampionDetail {
-  id: string;
-  name: string;
-  title: string;
-  lore: string;
-  image: {
-    full: string;
-  };
-  info: {
-    attack: number;
-    defense: number;
-    magic: number;
-    difficulty: number;
-  };
-}
-
-export interface ItemData {
-  id: string;
-  name: string;
-  plaintext: string;
-  image: string;
-}
-
-export interface ItemDetail {
-  name: string;
-  plaintext: string;
-  image: {
-    full: string;
-  };
-  description: string;
-}
-
-export interface ItemListResponse {
-  [key: string]: ItemDetail;
-}
+import {
+  ChampionDetail,
+  ChampionList,
+  ChampionListResponse,
+  ItemData,
+  ItemDetail,
+  ItemListResponse,
+} from "@/types/ChampionItem";
 
 // 최신 버전 가져오기
 export const getLatestVersion = async (): Promise<string> => {
@@ -75,8 +26,10 @@ export const getLatestVersion = async (): Promise<string> => {
     // 가장 처음것이 최신임
     return versions[0];
   } catch (error) {
-    console.error("Error fetching latest version:", error);
-    throw new Error("최신 버전 정보를 가져오는 중 오류가 발생했습니다.");
+    throw new Error(
+      `최신 버전 정보를 가져오는 중 오류가 발생했습니다.
+      error:${error}`
+    );
   }
 };
 
@@ -111,8 +64,10 @@ export const getChampionList = async (): Promise<ChampionList[]> => {
 
     return championList;
   } catch (error) {
-    console.error("Error fetching champion list:", error);
-    throw new Error("챔피언 목록 데이터를 가져오는 중 오류가 발생했습니다.");
+    throw new Error(
+      `챔피언 목록 데이터를 가져오는 중 오류가 발생했습니다.
+      error:${error}`
+    );
   }
 };
 
@@ -156,8 +111,10 @@ export const getChampionDetail = async (
       info: championData.info,
     };
   } catch (error) {
-    console.error(`Error fetching champion details for ID: ${id}`, error);
-    throw new Error("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    throw new Error(
+      `서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.
+      error:${error}`
+    );
   }
 };
 
@@ -187,8 +144,10 @@ export const fetchItemList = async (): Promise<ItemData[]> => {
 
     return itemList;
   } catch (error) {
-    console.error("Error fetching item list:", error);
-    throw new Error("아이템 목록 데이터를 가져오는 중 오류가 발생했습니다.");
+    throw new Error(
+      `아이템 목록 데이터를 가져오는 중 오류가 발생했습니다.
+      error:${error}`
+    );
   }
 };
 
@@ -230,7 +189,9 @@ export const getItemDetail = async (id: string): Promise<ItemDetail> => {
       description: item.description,
     };
   } catch (error) {
-    console.error("Error fetching item detail:", error);
-    throw new Error("아이템 상세 데이터를 가져오는 중 오류가 발생했습니다.");
+    throw new Error(
+      `아이템 상세 데이터를 가져오는 중 오류가 발생했습니다.
+      error:${error}`
+    );
   }
 };

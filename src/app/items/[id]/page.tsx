@@ -1,27 +1,20 @@
+import { PageProps } from "@/types/ChampionItem";
 import { getItemDetail } from "@/utils/serverApi";
 import { Metadata } from "next";
 import Image from "next/image";
 
-interface ItemDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-// 페이지 메타데이터 설정
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
-}: ItemDetailPageProps): Promise<Metadata> {
+}: PageProps): Promise<Metadata> => {
   const item = await getItemDetail(params.id);
 
   return {
     title: `${item.name}`,
     description: item.description.slice(0, 150),
   };
-}
+};
 
-export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
-  // 서버 사이드에서 아이템 상세 정보 가져오기
+const ItemDetailPage = async ({ params }: PageProps): Promise<JSX.Element> => {
   const item = await getItemDetail(params.id);
 
   return (
@@ -41,4 +34,6 @@ export default async function ItemDetailPage({ params }: ItemDetailPageProps) {
       ></p>
     </div>
   );
-}
+};
+
+export default ItemDetailPage;

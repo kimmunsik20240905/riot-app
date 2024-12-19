@@ -1,29 +1,22 @@
+import { PageProps } from "@/types/ChampionItem";
 import { getChampionDetail } from "@/utils/serverApi";
 import { Metadata } from "next";
 import Image from "next/image";
 
-interface ChampionDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-// 페이지 메타데이터 설정
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
-}: ChampionDetailPageProps): Promise<Metadata> {
+}: PageProps): Promise<Metadata> => {
   const champion = await getChampionDetail(params.id);
 
   return {
     title: `${champion.title}`,
     description: champion.lore.slice(0, 150),
   };
-}
+};
 
-export default async function ChampionDetailPage({
+const ChampionDetailPage = async ({
   params,
-}: ChampionDetailPageProps) {
-  // 서버 사이드에서 챔피언 상세 정보 가져오기
+}: PageProps): Promise<JSX.Element> => {
   const champion = await getChampionDetail(params.id);
 
   return (
@@ -48,4 +41,6 @@ export default async function ChampionDetailPage({
       </ul>
     </div>
   );
-}
+};
+
+export default ChampionDetailPage;

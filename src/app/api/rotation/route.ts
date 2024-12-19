@@ -1,4 +1,4 @@
-import { ChampionRotation } from "@/types/ChampionRotation";
+import { ChampionRotation } from "@/types/ChampionItem";
 import { NextResponse } from "next/server";
 
 export async function GET() {

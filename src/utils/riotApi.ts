@@ -2,7 +2,7 @@ import {
   ChampionData,
   ChampionDetails,
   ChampionRotation,
-} from "@/types/ChampionRotation";
+} from "@/types/ChampionItem";
 
 // 로테이션 데이터 가져오기
 export const getChampionRotation = async (): Promise<ChampionRotation> => {
@@ -43,7 +43,6 @@ export const getChampionData = async (
   }
 
   const champions = await response.json();
-  console.log(champions);
   // 챔피언 데이터 배열로 변환
   const championList: ChampionData[] = Object.values(champions.data);
 
